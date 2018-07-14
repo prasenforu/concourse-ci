@@ -46,7 +46,7 @@ resources:
 - name: git-go-http
   type: git
   source:
-    uri: https://github.com/tkrausjr/go-http
+    uri: https://github.com/prasenforu/dockerapp
     branch: master
 
 - name: harbor-image
