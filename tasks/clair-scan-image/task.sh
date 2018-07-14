@@ -14,7 +14,7 @@ export CLAIR_ADDR
 
 # Scan the image
 
-export HIGH=$(REGISTRY_INSECURE=true $CLAIR_ADDR klar $VCLAIR_IMAGE | tail -n 7 | grep High | awk '{print$2}')
+export HIGH=$(REGISTRY_INSECURE=true $CLAIR_ADDR klar $CLAIR_IMAGE | tail -n 7 | grep High | awk '{print$2}')
 
 if [[ $HIGH -lt 1 ]]; then
   echo "+++Image $CLAIR_IMAGE has passed scan threshold+++"
