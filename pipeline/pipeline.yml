@@ -1,10 +1,7 @@
 ---
 clair_scan_params: &clair_scan_params
-  CLAIR_URL: {{clair_url}}
-  CLAIR_PORT: {{clair_port}}
-  CLAIR_HEALTH_PORT: {{clair_health_port}}
+  CLAIR_ADDR: {{clair_addr}}
   CLAIR_IMAGE: {{clair_image}}
-  CLAIR_INSECURE_REGISTRY: {{clair_insecure_registry}}
   HARBOR_USERNAME: {{harbor_username}}
   HARBOR_PASSWORD: {{harbor_password}}
 
@@ -60,17 +57,7 @@ resources:
     repository: {{harbor_repository}}
     insecure_registries:
     - {{harbor_insecure_registry}}
-#    ca_certs:
-#    - domain: harbor-registry.vmwdri.local:443
-#      cert: |
-#        -----BEGIN CERTIFICATE-----
-#        some cert...
-#        -----END CERTIFICATE-----
-#    - domain: 10.190.63.153:443
-#      cert: |
-#        -----BEGIN CERTIFICATE-----
-#        some cert...
-#        -----END CERTIFICATE-----
+
 
 - name: kubernetes-deployment
   type: kubernetes
