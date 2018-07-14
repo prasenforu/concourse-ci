@@ -6,7 +6,6 @@ sed -i -e 's/us.archive.ubuntu.com/archive.ubuntu.com/g' /etc/apt/sources.list
 apt-get -y update
 apt-get -y install curl
 
-#curl -L https://raw.githubusercontent.com/jgsqware/clairctl/master/install.sh | sh
 mkdir -p /usr/local/bin
 curl -L https://github.com/optiopay/klar/releases/download/v1.5/klar-1.5-linux-amd64 -o /usr/local/bin/klar && chmod +x $_
 
