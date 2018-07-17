@@ -10,7 +10,8 @@ mkdir -p /usr/local/bin
 curl -L https://github.com/optiopay/klar/releases/download/v1.5/klar-1.5-linux-amd64 -o /usr/local/bin/klar && chmod +x $_
 
 export CLAIR_IMAGE 
-#export CLAIR_ADDR
+export CLAIR_ADDR
+export CLAIR_HOST
 
 # Scan the image
 
