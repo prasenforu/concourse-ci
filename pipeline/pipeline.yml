@@ -22,19 +22,7 @@ groups:
   jobs:
   - build-docker-image
   - cve-scan-harbor-image
-  - sign-harbor-image
-
-- name: Kubernetes-Deployment
-  jobs:
-  - k8s-deployment
-
-
-
-resource_types:
-- name: kubernetes
-  type: docker-image
-  source:
-    repository: virtmerlin/concourse-kubernetes-resource
+  - push-harbor-image
 
 resources:
 - name: git-spring1-ci
@@ -52,37 +40,10 @@ resources:
 - name: harbor-image
   type: docker-image
   source:
+    email: ((docker-hub-email))
     username: {{harbor_username}}
     password: {{harbor_password}}
     repository: {{harbor_repository}}
-    insecure_registries:
-    - {{harbor_insecure_registry}}
-
-
-- name: kubernetes-deployment
-  type: kubernetes
-  source:
-    cluster_url: {{k8s_cluster_url}}
-    namespace: {{k8s_namespace}}
-    cluster_ca: {{k8s_ca_base64}}
-    admin_user: {{k8s_admin_user}}
-    admin_token: {{k8s_admin_token}}
-    resource_type: deployment
-    resource_name: go-http
-    resource_port: 8080
-    overwrite: true
-
-- name: kubernetes-service
-  type: kubernetes
-  source:
-    cluster_url: {{k8s_cluster_url}}
-    namespace: {{k8s_namespace}}
-    cluster_ca: {{k8s_ca_base64}}
-    admin_user: {{k8s_admin_user}}
-    admin_token: {{k8s_admin_token}}
-    resource_type: service
-    resource_name: svc-go-http
-    overwrite: true
 
 jobs:
 - name: build-docker-image
@@ -106,7 +67,7 @@ jobs:
     file: git-spring1-ci/tasks/clair-scan-image/task.yml
     params: *clair_scan_params
 
-- name: sign-harbor-image
+- name: push-harbor-image
   plan:
   - aggregate:
     - get: git-spring1-ci
@@ -117,23 +78,3 @@ jobs:
     privileged: true
     file: git-spring1-ci/tasks/notary-sign-image/task.yml
     params: *notary_sign_params
-
-- name: k8s-deployment
-  public: true
-  serial: true
-  plan:
-  - get: harbor-image
-    passed: [sign-harbor-image]
-    trigger: true
-  - put: kubernetes-deployment
-    params:
-      image_name: {{clair_image}}
-      image_tag: latest
-      port: 8080
-  - put: kubernetes-service
-    params:
-      service_name: svc-go-http
-      service_type: NodePort
-      deployment_name: go-http
-      service_port: 30001
-      target_port: 8080
