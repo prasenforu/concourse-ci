@@ -21,11 +21,6 @@ export CLAIR_ADDR
 export HIGH=$(REGISTRY_INSECURE=true CLAIR_ADDR=$CLAIR_HOST /usr/local/bin/klar $CLAIR_IMAGE | tail -n 7 | grep High | awk '{print$2}')
 echo $HIGH
 
-if [[ $HIGH == "" ]]; then
-  echo "+++Image $CLAIR_IMAGE NOT able to Scan+++"
-  exit 1
-fi
-
 if [[ $HIGH -lt 1 ]]; then
   echo "+++Image $CLAIR_IMAGE has passed scan threshold+++"
 else
