@@ -15,7 +15,7 @@ curl -L https://github.com/optiopay/klar/releases/download/v1.5/klar-1.5-linux-a
 # Scan the image
 
 #export HIGH=$(REGISTRY_INSECURE=true http://10.90.1.78:6060 /usr/local/bin/klar $CLAIR_IMAGE | tail -n 7 | grep High | awk '{print$2}')
-export HIGH=$(REGISTRY_INSECURE=true $CLAIR_ADDR /usr/local/bin/klar $CLAIR_IMAGE | tail -n 7 | grep High | awk '{print$2}')
+export HIGH=$(REGISTRY_INSECURE=true CLAIR_ADDR=$CLAIR_ADDR /usr/local/bin/klar $CLAIR_IMAGE | tail -n 7 | grep High | awk '{print$2}')
 echo $HIGH
 
 if [[ $HIGH -lt 1 ]]; then
