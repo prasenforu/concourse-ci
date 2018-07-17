@@ -7,7 +7,7 @@ image_resource:
   source: {repository: ubuntu}
 
 params:
-  CLAIR_URL:
+  CLAIR_HOST:
   CLAIR_PORT:
   CLAIR_HEALTH_PORT:
   CLAIR_IMAGE:
