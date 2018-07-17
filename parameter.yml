@@ -1,0 +1,15 @@
+clair_addr: 
+clair_image: 
+docker-hub-email: 
+harbor_username: 
+harbor_password: 
+harbor_url: 
+harbor_insecure_registry: 
+harbor_repository: 
+harbor_image:
+harbor_ca_cert:
+harbor_ca_key:
+notary_file_1:
+notary_key_1:
+notary_file_2:
+notary_key_2:
