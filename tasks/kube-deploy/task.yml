@@ -1,0 +1,22 @@
+---
+
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: ubuntu}
+
+params:
+  KUBE_HOST:
+  KUBE_PORT:
+  CLAIR_HEALTH_PORT:
+  CLAIR_IMAGE:
+  CLAIR_INSECURE_REGISTRY:
+  HARBOR_USERNAME:
+  HARBOR_PASSWORD:
+
+inputs:
+  - name: git-spring1-ci
+
+run:
+  path: git-spring1-ci/tasks/kube-deploy/task.sh
