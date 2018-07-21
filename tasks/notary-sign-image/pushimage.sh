@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 source /opt/resource/common.sh
+
+start_docker
 
 docker login $HARBOR_URL -u $HARBOR_USERNAME -p $HARBOR_PASSWORD
 docker pull $HARBOR_IMAGE
