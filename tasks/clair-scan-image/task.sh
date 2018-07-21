@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "nameserver 10.90.0.2" >/etc/resolv.conf
+echo "nameserver 8.8.8.8" >>/etc/resolv.conf
+
 # Install klar
 sed -i -e 's/us.archive.ubuntu.com/archive.ubuntu.com/g' /etc/apt/sources.list
 apt-get -y update
