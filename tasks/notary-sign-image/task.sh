@@ -27,7 +27,7 @@ echo "{\"insecure-registries\" : [\"$HARBOR_URL\"]}" > /etc/docker/daemon.json
 #fn_decode $HARBOR_CA_CERT > "$HOME/.docker/tls/$HARBOR_URL:4443/ca.cert"
 #fn_decode $HARBOR_CA_KEY > "$HOME/.docker/tls/$HARBOR_URL:4443/ca.key"
 
-#start_docker
+start_docker
 
 
 docker login $HARBOR_URL -u $HARBOR_USERNAME -p $HARBOR_PASSWORD
