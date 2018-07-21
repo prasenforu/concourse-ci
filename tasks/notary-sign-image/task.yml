@@ -25,5 +25,5 @@ inputs:
   - name: git-spring1-ci
 
 run:
-  path: git-spring1-ci/tasks/notary-sign-image/pushimage.sh
-  #path: git-spring1-ci/tasks/notary-sign-image/task.sh
+  #path: git-spring1-ci/tasks/notary-sign-image/pushimage.sh
+  path: git-spring1-ci/tasks/notary-sign-image/task.sh
